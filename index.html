@@ -3,216 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gustavo & Melissa - 1 Ano e 1 Mês</title>
+    <title>Gustavo & Melissa - Nossa História</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C5A059;
-            --gold-dark: #b08d55;
-            --bg-color: #faf9f6;
-            --text-color: #4a4a4a;
-        }
-
+        :root { --gold: #C5A059; --gold-dark: #b08d55; --bg-color: #faf9f6; --text-color: #4a4a4a; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body { 
-            font-family: 'Montserrat', 'Segoe UI', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-color);
-            overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="%23C5A059"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
-        }
-
-        h1, h2, h3 { font-family: 'Cormorant Garamond', 'Times New Roman', serif; }
-
-        .particle {
-            position: fixed;
-            width: 4px; height: 4px;
-            background: rgba(197, 160, 89, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: float-particle linear infinite;
-        }
-        @keyframes float-particle {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
-        }
-
-        .heart-burst {
-            position: fixed;
-            font-size: 1.5rem;
-            pointer-events: none;
-            user-select: none;
-            z-index: 10000;
-            will-change: transform, opacity;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-        }
-        
-        @keyframes fly-up-fade {
-            0% { transform: translate(0, 0) scale(0.5) rotate(0deg); opacity: 1; }
-            100% { transform: translate(var(--tx), -150px) scale(1.2) rotate(var(--tr)); opacity: 0; }
-        }
-
-        #start-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 1s ease;
-        }
-        
-        .start-btn {
-            background: var(--gold); color: white; border: none;
-            padding: 20px 40px; font-size: 1.5rem; cursor: pointer;
-            border-radius: 50px; font-family: 'Montserrat', sans-serif;
-            letter-spacing: 2px; text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4);
-            animation: pulse 2s infinite;
-            margin-top: 30px;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(197, 160, 89, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
-        }
-
-        .slide { 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 2rem; 
-            opacity: 0; 
-            transform: translateY(30px); 
-            transition: all 1s ease-out; 
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative; z-index: 2;
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        .slide { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transform: translateY(30px); transition: all 1s ease-out; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .slide.visible { opacity: 1; transform: translateY(0); }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .content-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .order-mobile-1 { order: 1; }
-            .order-mobile-2 { order: 2; }
-        }
-
-        .image-box { 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
-            border-radius: 8px; 
-            overflow: hidden; 
-            height: 500px; 
-            width: 100%; 
-            position: relative;
-        }
-        
-        .image-box img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            display: block;
-        }
-
-        .text-content { display: flex; flex-direction: column; justify-content: center; }
-        .date-badge { 
-            display: inline-block; padding: 6px 16px; 
-            background: var(--gold); color: white; 
-            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; 
-            margin-bottom: 1.5rem; border-radius: 50px; width: fit-content;
-        }
-        
-        h1 { font-size: 5rem; margin-bottom: 1rem; font-style: italic; color: #333; line-height: 1; }
-        h2 { font-size: 3.5rem; margin-bottom: 1.5rem; font-style: italic; color: #333; line-height: 1.1; }
-        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem; color: #555; }
-        
-        .highlight { color: var(--gold); font-weight: 600; }
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; gap: 2rem; } }
+        .image-box { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border-radius: 8px; overflow: hidden; height: 550px; width: 100%; background: #eee; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .date-badge { display: inline-block; padding: 6px 16px; background: var(--gold); color: white; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; border-radius: 50px; }
+        h1 { font-size: 5rem; font-style: italic; color: #333; text-align: center; }
+        h2 { font-size: 3.5rem; font-style: italic; color: #333; margin-bottom: 1.5rem; line-height: 1; }
+        p { font-size: 1.15rem; line-height: 1.8; color: #555; margin-bottom: 1rem; text-align: justify; }
         .divider { width: 100px; height: 3px; background: var(--gold); margin: 2rem auto; }
-
-        .magic-btn { 
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); 
-            color: white; padding: 12px 28px; border-radius: 30px; 
-            font-size: 1rem; font-weight: 600; cursor: pointer; border: none; 
-            display: inline-flex; align-items: center; gap: 10px; margin-top: 20px;
-            width: fit-content;
-        }
-        
-        .magic-box { 
-            margin-top: 25px; padding: 25px; 
-            border-left: 4px solid var(--gold); 
-            background: #fff; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem; font-style: italic; color: #444; 
-            display: none; animation: fadeIn 0.8s ease forwards; 
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .music-controls {
-            position: fixed; bottom: 20px; right: 20px;
-            background: white; padding: 10px; border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            z-index: 100; display: flex; align-items: center; gap: 10px;
-            opacity: 0; transition: opacity 1s;
-        }
+        .magic-btn { background: var(--gold); color: white; padding: 12px 28px; border-radius: 30px; cursor: pointer; border: none; margin-top: 10px; font-weight: 600; }
+        .magic-box { margin-top: 20px; padding: 20px; border-left: 4px solid var(--gold); background: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; display: none; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        #start-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease; }
+        .start-btn { background: var(--gold); color: white; border: none; padding: 20px 40px; font-size: 1.5rem; cursor: pointer; border-radius: 50px; }
     </style>
 </head>
 <body>
-
-    <audio id="bgMusic" loop>
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-
+    <audio id="bgMusic" loop><source src="musica.mp3" type="audio/mpeg"></audio>
     <div id="start-screen">
-        <h1 style="font-size: 3rem; margin-bottom: 2rem; text-align: center;">Para Melissa</h1>
+        <h1 style="font-size: 3rem; margin-bottom: 2rem;">Para Melissa</h1>
         <button class="start-btn" onclick="startJourney()">❤️ Iniciar Nossa Jornada</button>
-    </div>
-
-    <div class="music-controls" id="musicControls">
-        <button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="toggleMusic()">🎵</button>
-        <span style="font-size: 0.8rem; color:#666;">Justin Bieber - 2 Much</span>
     </div>
 
     <section class="slide" id="intro">
         <div style="text-align: center; width: 100%;">
+            <span class="date-badge">Desde 27/12/2024</span>
             <h1>Gustavo & Melissa</h1>
             <div class="divider"></div>
-            <p style="letter-spacing: 5px; text-transform: uppercase; color: #888;">1 Ano e 1 Mês de História</p>
+            <p style="text-align: center; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;">Uma história escrita por Deus e vivida por nós.</p>
         </div>
     </section>
 
     <section class="slide">
         <div class="content-grid">
             <div class="image-box">
-                <img src="mes1.jpg" alt="Primeiro Encontro">
+                <img src="mes1.jpg" onerror="this.onerror=null; this.src='mes1.jpeg';" alt="Primeiro Encontro">
             </div>
             <div class="text-content">
-                <span class="date-badge">31/03/2024</span>
-                <h2>O Primeiro Encontro</h2>
-                <p>Aquele dia na praia onde tudo começou a mudar...</p>
-                <button class="magic-btn" onclick="revealMagic('msg1')">✨ Ver Mensagem</button>
-                <div id="msg1" class="magic-box">"Nas ondas daquele mar, começou o nosso caminhar."</div>
+                <span class="date-badge">O Início de Tudo</span>
+                <h2>Aquele dia na praia...</h2>
+                <p>Foi ali, com o som das ondas e o vento no rosto, que eu percebi que o meu mundo ganharia uma nova cor. O que parecia apenas um encontro, revelou-se o começo da viagem mais linda da minha vida.</p>
+                <button class="magic-btn" onclick="revealMagic('msg1')">✨ Abrir Sentimento</button>
+                <div id="msg1" class="magic-box">"Nas ondas daquele mar, começou o nosso caminhar. Aquele brilho no seu olhar me prometeu um mundo que eu finalmente comecei a viver."</div>
             </div>
         </div>
     </section>
 
     <section class="slide">
         <div class="content-grid">
-            <div class="text-content order-mobile-2">
-                <span class="date-badge">12/09/2024</span>
+            <div class="text-content">
+                <span class="date-badge">Um Passo Importante</span>
                 <h2>Especial e Único</h2>
-                <p>A primeira vez na sua casa. O momento em que percebi que queria estar ao seu lado para sempre.</p>
+                <p>A primeira vez que estive na sua casa, o frio na barriga era diferente. Não era apenas uma visita, era o abrir de portas para a sua intimidade. Cada detalhe ali me fazia admirar ainda mais a mulher incrível que você é.</p>
+                <button class="magic-btn" onclick="revealMagic('msg2')">✨ Lembrança</button>
+                <div id="msg2" class="magic-box">"A sua casa tornou-se o meu lugar favorito, simplesmente porque é onde o seu sorriso brilha mais livre."</div>
             </div>
-            <div class="image-box order-mobile-1">
-                <img src="visita.jpg" alt="Visita">
+            <div class="image-box">
+                <img src="visita.jpg" onerror="this.onerror=null; this.src='visita.jpeg';" alt="Visita">
             </div>
         </div>
     </section>
@@ -220,43 +77,15 @@
     <section class="slide">
         <div class="content-grid">
             <div class="image-box">
-                <img src="pedido.jpg" alt="O Pedido">
+                <img src="mes13.jpg" onerror="this.onerror=null; this.src='mes13.jpeg';" alt="Hoje">
             </div>
             <div class="text-content">
-                <span class="date-badge">27/12/2024</span>
-                <h2>O Sim Mais Importante</h2>
-                <p>O dia em que você se tornou oficialmente minha namorada.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="image-box">
-                <img src="ano1.jpg" alt="1 Ano de Namoro">
-            </div>
-            <div class="text-content">
-                <span class="date-badge">27/12/2025</span>
-                <h2>365 Dias de Nós</h2>
-                <p>O primeiro ano de uma vida inteira. Um marco que celebramos com todo amor do mundo.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="text-content order-mobile-2">
-                <span class="date-badge">27/01/2026 • HOJE</span>
-                <h2>13 Meses: Além do Infinito</h2>
-                <p>Hoje completamos 1 ano e 1 mês. Treze meses descobrindo que o amor não tem teto, ele só cresce.</p>
-                <p>Estou com muita saudade, espero que em breve possamos passar todos os dias 27 juntos.</p>
+                <span class="date-badge">Hoje • 27/01/2026</span>
+                <h2>1 Ano e 1 Mês</h2>
+                <p>Hoje completamos 13 meses. Treze meses descobrindo que o amor não tem teto, ele só cresce a cada dia que passo ao seu lado.</p>
+                <p>Estou com muita saudade, espero que em breve possamos passar todos os dias 27 juntos, vivendo cada momento intensamente como temos feito até aqui.</p>
                 <button class="magic-btn" onclick="revealMagic('msg13')">✨ Mensagem de Hoje</button>
-                <div id="msg13" class="magic-box">
-                    "Um ano se passou e o nosso 'pra sempre' está apenas começando. Minha maior vontade é ouvir sua doce voz dizendo infinitos sins"
-                </div>
-            </div>
-            <div class="image-box order-mobile-1">
-                <img src="mes13.jpg" alt="13 Meses">
+                <div id="msg13" class="magic-box">"Um ano se passou e o nosso 'pra sempre' está apenas começando. Minha maior vontade é ouvir sua doce voz dizendo infinitos sins. Eu te amo muito!!!"</div>
             </div>
         </div>
     </section>
@@ -266,37 +95,14 @@
             document.getElementById('start-screen').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('start-screen').style.display = 'none';
-                document.getElementById('musicControls').style.opacity = '1';
                 document.getElementById('bgMusic').play();
             }, 1000);
         }
-
-        function toggleMusic() {
-            const m = document.getElementById('bgMusic');
-            m.paused ? m.play() : m.pause();
-        }
-
-        function revealMagic(id) {
-            document.getElementById(id).style.display = 'block';
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
+        function revealMagic(id) { document.getElementById(id).style.display = 'block'; }
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.slide').forEach(slide => observer.observe(slide));
-
-        // Partículas e Corações (Mantidos do original)
-        setInterval(() => {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 15000);
-        }, 500);
     </script>
 </body>
 </html>
-
-
