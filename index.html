@@ -3,134 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gustavo & Melissa - Nossa História</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Para Melissa - Minha Promessa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #C5A059; --gold-dark: #b08d55; --bg-color: #faf9f6; --text-color: #4a4a4a; }
+        :root { --gold: #C5A059; --text: #333; --bg: #fdfcfb; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
-        .slide { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transform: translateY(30px); transition: all 1s ease-out; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-        .slide.visible { opacity: 1; transform: translateY(0); }
-        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
-        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; gap: 2rem; } }
-        .image-box { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border-radius: 8px; overflow: hidden; height: 550px; width: 100%; background: #eee; }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .date-badge { display: inline-block; padding: 6px 16px; background: var(--gold); color: white; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; border-radius: 50px; }
-        h1 { font-size: 5rem; font-style: italic; color: #333; text-align: center; }
-        h2 { font-size: 3.5rem; font-style: italic; color: #333; margin-bottom: 1.5rem; line-height: 1; }
-        p { font-size: 1.15rem; line-height: 1.8; color: #555; margin-bottom: 1rem; text-align: justify; }
-        .divider { width: 100px; height: 3px; background: var(--gold); margin: 2rem auto; }
-        .magic-btn { background: var(--gold); color: white; padding: 12px 28px; border-radius: 30px; cursor: pointer; border: none; margin-top: 10px; font-weight: 600; }
-        .magic-box { margin-top: 20px; padding: 20px; border-left: 4px solid var(--gold); background: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; display: none; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        #start-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease; }
-        .start-btn { background: var(--gold); color: white; border: none; padding: 20px 40px; font-size: 1.5rem; cursor: pointer; border-radius: 50px; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+        
+        /* Estilo da Foto de Destaque */
+        .hero-img { width: 100%; max-width: 500px; height: 600px; object-fit: cover; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-bottom: 3rem; border: 1px solid #eee; }
+        
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 400; font-style: italic; margin-bottom: 1rem; color: #1a1a1a; }
+        .subtitle { letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; color: var(--gold); margin-bottom: 3rem; display: block; }
+        
+        .letter-content { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; text-align: center; color: #444; max-width: 600px; margin: 0 auto 4rem; font-style: italic; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 2rem 0; }
+        .stat-item span { display: block; color: var(--gold); font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; }
+        .stat-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        .promise-box { background: white; padding: 3rem; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 4rem; }
+        .promise-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .promise-box p { font-size: 1.1rem; color: #666; margin-bottom: 1rem; }
+
+        .footer { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-top: 5rem; opacity: 0.8; }
+        
+        /* Animação Inicial */
+        .fade-in { animation: fadeIn 2.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <audio id="bgMusic" loop><source src="musica.mp3" type="audio/mpeg"></audio>
-    <div id="start-screen">
-        <h1 style="font-size: 3rem; margin-bottom: 2rem;">Para Melissa</h1>
-        <button class="start-btn" onclick="startJourney()">❤️ Iniciar Nossa Jornada</button>
+
+    <div class="container fade-in">
+        <span class="subtitle">Nossa história • 14 Meses</span>
+        <h1>Gustavo & Melissa</h1>
+        
+        <img src="mes14.jpg" onerror="this.onerror=null; this.src='ano1.jpg';" alt="Nós dois" class="hero-img">
+
+        <div class="letter-content">
+            "A vida não é um roteiro perfeito, e eu sei disso. Mas olhar para trás nesses 14 meses me dá uma única certeza..."
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span>427 Dias</span>
+                <p>De Escolhas Diárias</p>
+            </div>
+            <div class="stat-item">
+                <span>Infinitos</span>
+                <p>Planos para o Futuro</p>
+            </div>
+        </div>
+
+        <div class="promise-box">
+            <h2>Entre erros e acertos...</h2>
+            <p>Eu não prometo ser um homem perfeito, porque a perfeição não existe. Mas eu te prometo algo muito mais real:</p>
+            <p><strong>Eu prometo ser o melhor marido do mundo para você.</strong></p>
+            <p>Prometo aprender com cada falha, priorizar o nosso amor acima de tudo e ser o seu porto seguro, não importa o quão agitado o mar lá fora esteja.</p>
+            <p>Cada dia ao seu lado é um ensaio para o nosso 'para sempre'. E eu mal posso esperar para que esse 'para sempre' comece logo debaixo do mesmo teto.</p>
+        </div>
+
+        <div class="footer">
+            Com todo o meu amor, <br>
+            Gustavo.
+        </div>
     </div>
 
-    <section class="slide" id="intro">
-        <div style="text-align: center; width: 100%;">
-            <span class="date-badge">Desde 27/12/2024</span>
-            <h1>Gustavo & Melissa</h1>
-            <div class="divider"></div>
-            <p style="text-align: center; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;"> Jeová me presentou com a menina mais linda do mundo, por fora e por dentro!</p>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="image-box">
-                <img src="mes1.jpg" onerror="this.onerror=null; this.src='mes1.jpeg';" alt="Primeiro Encontro">
-            </div>
-            <div class="text-content">
-                <span class="date-badge">O Início de Tudo</span>
-                <h2>Aquele dia na praia...</h2>
-                <p>Foi ali, com o som das ondas e o vento no rosto, que eu percebi que o meu mundo ganharia uma nova cor. O que parecia apenas um encontro, revelou-se o começo da viagem mais linda da minha vida.</p>
-                <button class="magic-btn" onclick="revealMagic('msg1')">✨ Abrir Sentimento</button>
-                <div id="msg1" class="magic-box">"Nas ondas daquele mar, começou o nosso caminhar. Aquele brilho no seu olhar me prometeu um mundo que eu finalmente comecei a viver."</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="text-content">
-                <span class="date-badge">Um Passo Importante</span>
-                <h2>Especial e Único</h2>
-                <p>A primeira vez que estive na sua casa, o frio na barriga era diferente. Cada detalhe naquele dia me fazia admirar ainda mais a mulher incrível que você é.</p>
-                <button class="magic-btn" onclick="revealMagic('msg2')">✨ Lembrança</button>
-                <div id="msg2" class="magic-box">"O dia que eu tive a certeza que queria passar o resto da minha vida com você"</div>
-            </div>
-            <div class="image-box">
-                <img src="visita.jpg" onerror="this.onerror=null; this.src='visita.jpeg';" alt="Visita">
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="image-box">
-                <img src="pedido.jpg" onerror="this.onerror=null; this.src='pedido.jpeg';" alt="O Pedido">
-            </div>
-            <div class="text-content">
-                <span class="date-badge">27/12/2024</span>
-                <h2>O Sim Mais Lindo</h2>
-                <p>A data que mudou o meu estado civil, mas principalmente, o meu estado de espírito. O dia que a vida começou a ter mais brilho e meu rosto mais sorrisos.</p>
-                <p>Aquele 'sim' ecoa na minha mente todos os dias como uma promessa de felicidade. Você aceitou caminhar ao meu lado, e eu prometi nunca soltar a sua mão.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="text-content">
-                <span class="date-badge">365 Dias</span>
-                <h2>Um Ano de Nós</h2>
-                <p>Atravessamos as quatro estações. Sorrimos, aprendemos, crescemos e nos tornamos um só coração batendo em dois corpos.</p>
-                <p>Um ano parece muito para quem olha de fora, mas para mim, passou num sopro, porque o tempo voa quando estamos vivendo um sonho acordados ao lado da pessoa certa.</p>
-            </div>
-            <div class="image-box">
-                <img src="ano1.jpg" onerror="this.onerror=null; this.src='ano1.jpeg';" alt="Um Ano">
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="content-grid">
-            <div class="image-box">
-                <img src="mes13.jpg" onerror="this.onerror=null; this.src='mes13.jpeg';" alt="Hoje">
-            </div>
-            <div class="text-content">
-                <span class="date-badge">Hoje • 27/01/2026</span>
-                <h2>1 Ano e 1 Mês</h2>
-                <p>Hoje completamos 13 meses. Treze meses descobrindo que o amor não tem teto, ele só cresce a cada dia que passo ao seu lado.</p>
-                <p>Estou com muita saudade, espero que em breve possamos passar todos os dias 27 juntos, vivendo cada momento intensamente como temos feito até aqui.</p>
-                <button class="magic-btn" onclick="revealMagic('msg13')">✨ Mensagem de Hoje</button>
-                <div id="msg13" class="magic-box">"Um ano se passou e o nosso 'pra sempre' está apenas começando. Minha maior vontade é ouvir sua doce voz dizendo infinitos sins. Eu te amo muito!!!"</div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        function startJourney() {
-            document.getElementById('start-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('start-screen').style.display = 'none';
-                document.getElementById('bgMusic').play();
-            }, 1000);
-        }
-        function revealMagic(id) { document.getElementById(id).style.display = 'block'; }
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.slide').forEach(slide => observer.observe(slide));
-    </script>
 </body>
 </html>
